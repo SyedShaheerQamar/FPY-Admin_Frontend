@@ -1,0 +1,105 @@
+<nav class="main-menu">
+    <div class="sidebar-head" (click)="dashboard()">
+        <img src="../../../assets/smca-logo.png" alt="" class="sidebar-img">
+    </div>
+    <ul>
+        <li>
+            <span class="sidebar-list-hover" (click)="dashboard()">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">
+                    Home
+                </span>
+            </span>
+        </li>
+        <!-- *ngIf="sessionStorageService.hasPermission('USER_MANAGEMENT')" -->
+        <li >
+            <span class="sidebar-list-hover" (click)="user()">
+                <i class="fa fa-user fa-2x"></i>
+                <span class="nav-text">
+                    Buyers 
+                </span>
+            </span>
+
+        </li>
+
+        <!-- *ngIf="sessionStorageService.hasPermission('PERMISSIONS_MANAGEMENT')" -->
+        <!-- <li >
+            <span  class="sidebar-list-hover" (click)="permissions()">
+              <i class="fa fa-add fa-2x"></i>
+              <span class="nav-text">
+                Sellers
+              </span>
+            </span>
+        </li> -->
+
+          <!-- *ngIf="sessionStorageService.hasPermission('CUSTOMER_MANAGEMENT')" -->
+        <li >
+            <span class="sidebar-list-hover" (click)="customer()">
+                <i class="fa fa-shopping-cart fa-2x"></i>
+                <span class="nav-text">
+                    Sellers
+                </span> 
+            </span>
+
+        </li>
+        <!-- *ngIf="sessionStorageService.hasPermission('CURRENCY_MANAGEMENT')" -->
+        <!-- <li >
+            <span class="sidebar-list-hover" (click)="currency()">
+                <i class="fa fa-dollar-sign fa-2x"></i> 
+                <span class="nav-text">
+                    Currency
+                </span>
+            </span>
+        </li> -->
+        
+        <!-- *ngIf="sessionStorageService.hasPermission('CUSTOM_PORT_MANAGEMENT')" -->
+        <!-- <li >
+            <span class="sidebar-list-hover" (click)="customPort()">
+                <i class="fa fa-shipping-fast fa-2x"></i>
+                <span class="nav-text">
+                    Custom Port
+                </span>
+            </span>
+
+        </li> -->
+        <!-- *ngIf="sessionStorageService.hasPermission('REGIONS_MANAGEMENT')" -->
+        <!-- <li >
+            <span class="sidebar-list-hover" (click)="region()">
+                <i class="fa fa-globe fa-2x"></i>
+
+                <span class="nav-text">
+                    Region
+                </span>
+            </span>
+        </li> -->
+        <!-- *ngIf="sessionStorageService.hasPermission('SALES_REPORT_MANAGEMENT')" -->
+        <!-- <li >
+            <span class="sidebar-list-hover " (click)="salesReports()">
+                <i class="fa fa-add fa-2x"></i>
+                <span class="nav-text">
+                    Sales Report
+                </span>
+            </span>
+        </li> -->
+
+
+        <!-- *ngIf="sessionStorageService.hasPermission('SHEET_HISTORY_MANAGEMENT')" -->
+          <!-- <li >
+            <span  class="sidebar-list-hover" (click)="sheetHistory()">
+              <i class="fa fa-add fa-2x"></i>
+              <span class="nav-text">
+                Loading History
+              </span>
+            </span>
+          </li> -->
+          <!-- *ngIf="sessionStorageService.hasPermission('IMPORT_EXCEL_MANAGEMENT')" -->
+        <!-- <li >
+            <span class="sidebar-list-hover" (click)="import()">
+                <i class="fa fa-download fa-2x"></i>
+                <span class="nav-text">
+                    Import Excel
+                </span>
+            </span>
+        </li> -->
+    </ul>
+</nav>

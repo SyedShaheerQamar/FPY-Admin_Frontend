@@ -1,0 +1,68 @@
+<app-sidebar></app-sidebar>
+<div class="body-position">
+    <app-dashboard-head></app-dashboard-head>
+    <div class="main-container">
+        <div>
+            <h4>Users</h4>
+        </div>
+        <div class="order-body">
+            <div class="order-search-panel">
+                <input 
+                type="text" 
+                placeholder="Search By User Name" 
+                class="order-search form-control" 
+                [(ngModel)]="searchText"
+                (ngModelChange)="getUsers(0, 10);">
+                <div>
+                    <!-- <button class="btn btn-outline-primary custom-outline-primary font-size14px rounded-lg custom-margin" type="submit" (click)="addUser()">
+                        <span>Add User</span>
+                    </button> -->
+                    <button *ngIf="users!.length!=0 && users!=null" class="btn btn-outline-primary custom-outline-primary font-size14px rounded-lg" type="submit" (click)="downloadFile()">
+                        <span>Download Excel</span>
+                    </button>
+                </div>
+            </div>
+            <div class="order-table table-container">
+                <table class="table table-striped">
+                    <thead style="
+                    background: #ffffff;
+                    position: sticky;">
+                    <tr class="header-fixed">
+                        <th class="text-center nowrap col-md-2 col-lg-1">
+                            <span class="font">Id</span>
+                        </th>
+                        <th class="text-center nowrap col-md-2 col-lg-1">
+                            <span class="font">User Name</span>
+                        </th>
+                        <th class="text-center nowrap col-md-2 col-lg-1">
+                            <span class="font">Email</span>
+                        </th>
+                        <!-- <th class="text-center nowrap col-md-2 col-lg-1">
+                            <span class="font">Actions</span>
+                        </th> -->
+                    </tr>
+                </thead>
+
+                    <tbody>
+                        <tr *ngFor="let user of users" class="order-table-row-hover">
+                            <th class="text-center w-auto col-md-2 col-lg-1">{{user?.id}}</th>
+                            <td class="text-center w-auto col-md-2 col-lg-1">{{user?.name}}</td>
+                            <td class="text-center w-auto col-md-2 col-lg-1">{{user?.email}}</td>
+                            <!-- <td class="order-table-btns-container text-center w-auto col-md-2 col-lg-1">
+                                <i [style.color]="user?.email ? 'black' : 'red'" style="cursor: pointer !important;" class="fa-solid fa-pen"(click)="updateUser(user?.id)"></i>&nbsp;
+                            </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="row mt-4" *ngIf="users!.length > 0">
+            <div class="col">
+            </div>
+            <div class="col-auto">
+                <mat-paginator [pageSize]="itemsPerPage" [length]="totalItems" (page)="changePage($event)" class="page-change"> </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

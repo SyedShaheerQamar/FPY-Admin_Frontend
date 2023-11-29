@@ -1,0 +1,97 @@
+<app-sidebar></app-sidebar>
+<div class="body-position">
+    <app-dashboard-head></app-dashboard-head>
+    <div class="main-container">
+        <div>
+            <h4>Sheet History</h4>
+            <p class="page-intro">Whole data about your business here</p>
+        </div>
+        <div class="order-body">
+           
+            <div class="order-table table-container">
+                <table class="table table-striped">
+                    <thead style="
+                    background: #ffffff;
+                    position: sticky;">
+                    <tr class="header-fixed">
+                        <th class="nowrap col-md-2 col-lg-1 text-center">
+                            <span class="font">Id</span>
+                        </th>
+                        <th class="nowrap col-md-2 col-lg-1 text-center">
+                            <span class="font">Email Sent to all</span>
+                        </th>
+                        <th class="nowrap col-md-2 col-lg-1 text-center">
+                            <span class="font">Sheet Name</span>
+                        </th>
+                        <th class="nowrap col-md-2 col-lg-1 text-center">
+                            <span class="font">Excel Download</span>
+                        </th>
+                        <th class="nowrap col-md-2 col-lg-1 text-center">
+                            <span class="font">Sheet Id</span>
+                        </th>
+                        <th class="nowrap col-md-2 col-lg-1 text-center">
+                            <span class="font">Custom</span>
+                        </th>
+                        <th class="nowrap col-md-2 col-lg-1 text-center">
+                            <span class="font">Inovice Date</span>
+                        </th>
+                        <th class="nowrap col-md-2 col-lg-1 text-center">
+                            <span class="font">start Date</span>
+                        </th>
+                        <th class="nowrap col-md-2 col-lg-1 text-center">
+                            <span class="font">End Date</span>
+                        </th>
+                        <th class="nowrap col-md-2 col-lg-1 text-center">
+                            <span class="font">Delete Sheet</span>
+                        </th>
+                    </tr>
+                </thead>
+
+                    <tbody>
+                        <tr *ngFor="let sheetHistor of sheetHistory" class="order-table-row-hover">
+                            <th scope="row" class="tracking-id text-center">{{sheetHistor.id}}</th>
+                            <td class="text-center w-auto col-md-2 col-lg-1">
+                                <ng-container *ngIf="sheetHistor.isEmailSent; else notSent">
+                                  <button type="button" class="btn btn-success" (click)="gotoTransaction(sheetHistor.uniqueUUid)">Sent To All</button>
+                                </ng-container>
+                                <ng-template #notSent>
+                                  <button type="button" class="btn btn-danger" (click)="gotoTransaction(sheetHistor.uniqueUUid)">Not Sent</button>
+                                </ng-template>
+                              </td> 
+                            <td class="text-center w-auto col-md-2 col-lg-1">{{sheetHistor.name}}</td>
+                            <td class="text-center w-auto col-md-2 col-lg-1" (click)="downloadExcel(sheetHistor)">
+                                <!-- Render download icon when mailSent is true -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                                </svg>
+                              </td>
+                            <td class="text-center w-auto col-md-2 col-lg-1">{{sheetHistor.uniqueUUid}}</td>
+                            <td class="text-center w-auto col-md-2 col-lg-1">{{sheetHistor?.custom?.customPort}}</td>
+                            <td class="text-center w-auto col-md-2 col-lg-1">{{sheetHistor.invoiceDate}}</td>
+                            <td class="text-center w-auto col-md-2 col-lg-1">{{sheetHistor.startDate}}</td>
+                            <td class="text-center w-auto col-md-2 col-lg-1">{{sheetHistor.endDate}}</td>
+                            <td class="text-center w-auto col-md-2 col-lg-1">
+                                <button *ngIf="!sheetHistor.isEmailSent" type="button" class="btn btn-danger" (click)="deleteData(sheetHistor.uniqueUUid)">Delete</button>
+                            </td>
+
+                          
+                        </tr>
+                      
+    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row mt-4" *ngIf="sheetHistory!.length > 0">
+            <div class="col">
+              <!-- Your content here -->
+           </div>
+            <div class="col-auto">
+                <mat-paginator [pageSize]="itemsPerPage" [length]="totalItems" (page)="changePage($event)"> </mat-paginator>
+            </div>
+        </div>  
+
+    </div>
+</div>
